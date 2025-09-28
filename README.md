@@ -46,11 +46,10 @@ Or visit: http://127.0.0.1:7860
 
 💻 Example Workflow
 In the UI, type a question:
-What is the capital of Japan?
+where Nvidia chips are used ?
 
 FAISS retrieves the relevant document:
-
-"The capital of Japan is Tokyo."
+Nvidia chips are used in cloud platforms like AWS, Google Cloud, and Azure
 
 
 Gemini LLM generates a natural language answer:
