@@ -47,6 +47,7 @@ Or visit: http://127.0.0.1:7860
 💻 Example Workflow
 In the UI, type a question:
 where Nvidia chips are used ?
+when was CUDA introduced ?
 
 FAISS retrieves the relevant document:
 Nvidia chips are used in cloud platforms like AWS, Google Cloud, and Azure
