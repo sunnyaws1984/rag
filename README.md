@@ -51,11 +51,6 @@ where Nvidia chips are used ?
 FAISS retrieves the relevant document:
 Nvidia chips are used in cloud platforms like AWS, Google Cloud, and Azure
 
-
-Gemini LLM generates a natural language answer:
-
-The capital of Japan is Tokyo.
-
 📂 Project Structure
 rag/
 │── create_embeddings.py         # Creates FAISS index
