@@ -19,18 +19,14 @@ cd rag
 2. Create a virtual environment (recommended)
 python -m venv rag
 source rag/bin/activate       # Mac/Linux
-rag\Scripts\activate          # Windows
+source rag/Scripts/activate   # GIT BASH
 
 3. Install dependencies
 pip install -r requirements.txt
 
 ⚙️ Environment Setup
-
 Create a .env file in the project root:
-
 GEMINI_API_KEY=your_api_key_here
-
-
 Get your Gemini API key from 👉 Google AI Studio
 
 🛠️ How to Run
@@ -45,17 +41,12 @@ Store them in a local FAISS index (faiss_index/)
 Step 2: Start the Gradio UI
 python retrieval_with_llm.py
 
-
 A browser window will open automatically
-
 Or visit: http://127.0.0.1:7860
 
 💻 Example Workflow
-
 In the UI, type a question:
-
 What is the capital of Japan?
-
 
 FAISS retrieves the relevant document:
 

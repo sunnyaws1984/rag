@@ -1,18 +1,25 @@
-# create_embeddings.py
-# pip install sentence-transformers langchain faiss-cpu
-
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import CharacterTextSplitter
 
 # 1️⃣ Sample documents
 texts = [
-    "The capital of Japan is Tokyo.",
-    "Python is a programming language used in AI.",
-    "The Amazon River is the largest river by discharge.",
-    "The Eiffel Tower is in Paris, France.",
-    "Our Favourite player is Abhishek Sharma",
-    "The Great Wall of China is visible from space."
+    "NVIDIA Corporation was founded in 1993 by Jensen Huang, Chris Malachowsky, and Curtis Priem.",
+    "NVIDIA is a global leader in GPUs, artificial intelligence, and high-performance computing.",
+    "NVIDIA's GeForce series dominates the gaming GPU market.",
+    "CUDA, introduced by NVIDIA in 2006, enables general-purpose computing on GPUs.",
+    "NVIDIA GPUs are widely used for AI model training and inference.",
+    "NVIDIA's A100 and H100 GPUs power modern AI workloads and data centers.",
+    "The Blackwell GPU architecture is the next generation of NVIDIA's AI hardware.",
+    "NVIDIA reached a market cap rivaling Apple and Microsoft in 2023.",
+    "NVIDIA Omniverse is a platform for 3D simulation and digital twin creation.",
+    "NVIDIA DGX systems are enterprise-grade AI supercomputers.",
+    "TensorRT, cuDNN, and Triton are key components of NVIDIA's AI software stack.",
+    "NVIDIA's chips are used in cloud platforms like AWS, Google Cloud, and Azure.",
+    "NVIDIA DRIVE is a platform for autonomous vehicle computing.",
+    "NVIDIA accelerates innovation in healthcare, robotics, and scientific research.",
+    "NVIDIA is a foundational force in the generative AI revolution.",
+    "NVIDIA is not just a chipmaker but an AI infrastructure leader."
 ]
 
 # 2️⃣ Split text
