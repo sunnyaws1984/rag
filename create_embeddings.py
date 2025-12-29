@@ -1,38 +1,56 @@
+import requests
+import fitz  # PyMuPDF
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain.text_splitter import CharacterTextSplitter
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-# 1️⃣ Sample documents
-texts = [
-    "NVIDIA Corporation was founded in 1993 by Jensen Huang, Chris Malachowsky, and Curtis Priem.",
-    "NVIDIA is a global leader in GPUs, artificial intelligence, and high-performance computing.",
-    "NVIDIA's GeForce series dominates the gaming GPU market.",
-    "CUDA, introduced by NVIDIA in 2006, enables general-purpose computing on GPUs.",
-    "NVIDIA GPUs are widely used for AI model training and inference.",
-    "NVIDIA's A100 and H100 GPUs power modern AI workloads and data centers.",
-    "The Blackwell GPU architecture is the next generation of NVIDIA's AI hardware.",
-    "NVIDIA reached a market cap rivaling Apple and Microsoft in 2023.",
-    "NVIDIA Omniverse is a platform for 3D simulation and digital twin creation.",
-    "NVIDIA DGX systems are enterprise-grade AI supercomputers.",
-    "TensorRT, cuDNN, and Triton are key components of NVIDIA's AI software stack.",
-    "NVIDIA's chips are used in cloud platforms like AWS, Google Cloud, and Azure.",
-    "NVIDIA DRIVE is a platform for autonomous vehicle computing.",
-    "NVIDIA accelerates innovation in healthcare, robotics, and scientific research.",
-    "NVIDIA is a foundational force in the generative AI revolution.",
-    "NVIDIA is not just a chipmaker but an AI infrastructure leader."
-]
+# Create embeddings locally via HuggingFace Model
+embeddings = HuggingFaceEmbeddings(
+    model_name="all-MiniLM-L6-v2"
+)
 
-# 2️⃣ Split text
-splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=10)
-print ("Splitter",splitter)
-docs = splitter.create_documents(texts)
-print ("Docs", docs)
-# 3️⃣ Create embeddings locally
-embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-print ("Embeddings",embeddings)
-# 4️⃣ Store embeddings in FAISS
+# Download PDF from internet
+pdf_url = "https://www.timelabs.in/resource/hrPolicies/HR-Policy-Manual-Template.pdf"
+pdf_path = "HR_Policy_Manual.pdf"
+
+response = requests.get(pdf_url)
+with open(pdf_path, "wb") as f:
+    f.write(response.content)
+
+print("Step 1 PDF downloaded")
+
+# Extract text from PDF
+doc = fitz.open(pdf_path)
+full_text = ""
+
+for page in doc:
+    full_text += page.get_text()
+
+print("Step 2 Text extracted from PDF")
+
+#  Split text into chunks
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=600,           # medium-large chunks for policies
+    chunk_overlap=100,        # overlap to preserve context
+    separators=["\n\n", "\n", " ", ""]  # splits on paragraphs ,single lines and spaces.
+)
+
+docs = splitter.create_documents([full_text])
+print(f"Step 3 - Total chunks created: {len(docs)}")
+
+chunk_1 = docs[2].page_content
+chunk_2 = docs[3].page_content
+print("\n========== CHUNK 1 ==========")
+print(chunk_1)
+print("\n========== CHUNK 2 ==========")
+print(chunk_2)
+
+
+#  Store embeddings in FAISS
 vectorstore = FAISS.from_documents(docs, embeddings)
 
-# 5️⃣ Save vectorstore to disk
-vectorstore.save_local("faiss_index")
-print("✅ Embeddings saved to 'faiss_index' folder!")
+#  Save FAISS index
+vectorstore.save_local("hr_policy_faiss_index")
+
+print("HR Policy RAG index saved to 'hr_policy_faiss_index'")

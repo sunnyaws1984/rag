@@ -2,3 +2,7 @@
 .env
 faiss_index
 rag
+.rag
+HR_Policy_*.pdf
+__pycache__/
+.ipynb_checkpoints

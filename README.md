@@ -9,7 +9,7 @@ This project demonstrates a simple **Retrieval-Augmented Generation (RAG)** pipe
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### 1. Clone the project
 ```bash
@@ -22,14 +22,18 @@ source rag/bin/activate       # Mac/Linux
 source rag/Scripts/activate   # GIT BASH
 
 3. Install dependencies
+pip install requests pymupdf langchain langchain-community sentence-transformers faiss-cpu gradio
+pip install google-genai
+
+or
 pip install -r requirements.txt
 
-⚙️ Environment Setup
+# Environment Setup
 Create a .env file in the project root:
 GEMINI_API_KEY=your_api_key_here
 Get your Gemini API key from 👉 Google AI Studio
 
-🛠️ How to Run
+# How to Run
 Step 1: Build FAISS index
 python create_embeddings.py
 
@@ -46,11 +50,11 @@ Or visit: http://127.0.0.1:7860
 
 💻 Example Workflow
 In the UI, type a question:
-where Nvidia chips are used ?
-when was CUDA introduced ?
+What is Probationary Period  ?
+what are exit interviews policy ?
+How are vacancies listed in org ?
+..
 
-FAISS retrieves the relevant document:
-Nvidia chips are used in cloud platforms like AWS, Google Cloud, and Azure
 
 📂 Project Structure
 rag/
@@ -60,3 +64,15 @@ rag/
 │── .env                    # Store your Gemini API key here
 │── faiss_index/            # Saved FAISS vector store
 │── README.md
+
+#####################################################################################
+
+Reference:
+
+Hello world! This is a test of the RecursiveCharacterTextSplitter.
+
+chunk_size = 20
+chunk_overlap = 4
+
+Chunk 1: "Hello world! This is "
+Chunk 2: " is a test of the Recu"   <- last 4 chars including spaces from Chunk 1 (" is ") appear here
