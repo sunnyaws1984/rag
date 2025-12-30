@@ -6,3 +6,5 @@ rag
 HR_Policy_*.pdf
 __pycache__/
 .ipynb_checkpoints
+.gradio/vscode/
+.vscode/

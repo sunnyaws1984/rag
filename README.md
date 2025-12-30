@@ -21,9 +21,9 @@ python -m venv rag
 source rag/bin/activate       # Mac/Linux
 source rag/Scripts/activate   # GIT BASH
 
-3. Install dependencies
-pip install requests pymupdf langchain langchain-community sentence-transformers faiss-cpu gradio
-pip install google-genai
+3. Install dependencies:
+pip install uv
+uv pip install requests pymupdf langchain langchain-community sentence-transformers faiss-cpu gradio google-genai
 
 or
 pip install -r requirements.txt
@@ -31,7 +31,7 @@ pip install -r requirements.txt
 # Environment Setup
 Create a .env file in the project root:
 GEMINI_API_KEY=your_api_key_here
-Get your Gemini API key from 👉 Google AI Studio
+Get your Gemini API key from Google AI Studio
 
 # How to Run
 Step 1: Build FAISS index
@@ -76,3 +76,15 @@ chunk_overlap = 4
 
 Chunk 1: "Hello world! This is "
 Chunk 2: " is a test of the Recu"   <- last 4 chars including spaces from Chunk 1 (" is ") appear here
+
+## This is the Process of creating Embeddings.
+
+PDF Text
+   ↓
+Text Chunks
+   ↓
+HuggingFaceEmbeddings
+   ↓
+384-dimensional vectors
+   ↓
+FAISS index (fast similarity search)
