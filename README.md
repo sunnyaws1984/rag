@@ -88,3 +88,20 @@ HuggingFaceEmbeddings
 384-dimensional vectors
    ↓
 FAISS index (fast similarity search)
+
+## This is the Process of Retrieval (RAG)
+Retrieval converts the user question into an embedding, searches FAISS for nearest vectors, and returns the most relevant document chunks as context for the LLM
+
+User Question
+   ↓
+Query Embedding
+   ↓
+HuggingFaceEmbeddings
+   ↓
+384-dimensional query vector
+   ↓
+FAISS index (similarity search)
+   ↓
+Top-K most similar document chunks
+   ↓
+Context passed to LLM
