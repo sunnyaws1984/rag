@@ -67,7 +67,7 @@ rag/
 
 #####################################################################################
 
-Reference:
+🧠 Reference:
 
 Hello world! This is a test of the RecursiveCharacterTextSplitter.
 
@@ -77,7 +77,7 @@ chunk_overlap = 4
 Chunk 1: "Hello world! This is "
 Chunk 2: " is a test of the Recu"   <- last 4 chars including spaces from Chunk 1 (" is ") appear here
 
-## This is the Process of creating Embeddings.
+🧩 This is the Process of creating Embeddings.
 
 PDF Text
    ↓
@@ -89,7 +89,7 @@ HuggingFaceEmbeddings
    ↓
 FAISS index (fast similarity search)
 
-## This is the Process of Retrieval (RAG)
+🧩 This is the Process of Retrieval (RAG)
 Retrieval converts the user question into an embedding, searches FAISS for nearest vectors, and returns the most relevant document chunks as context for the LLM
 
 User Question
