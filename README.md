@@ -55,15 +55,11 @@ what are exit interviews policy ?
 How are vacancies listed in org ?
 ..
 
+💻 Dockerize this Application: (Sample as this needs to be tweaked more)
 
-📂 Project Structure
-rag/
-│── create_embeddings.py         # Creates FAISS index
-│── retrieval_with_llm.py   # Gradio UI + Gemini for answering
-│── requirements.txt
-│── .env                    # Store your Gemini API key here
-│── faiss_index/            # Saved FAISS vector store
-│── README.md
+docker build -t hr-policy-rag .
+docker run -p 7860:7860 --env-file .env hr-policy-rag
+
 
 #####################################################################################
 

@@ -71,4 +71,4 @@ iface = gr.Interface(
     description="Ask questions about your company's HR policies. Answers are generated strictly from the policy documents."
 )
 
-iface.launch()
+iface.launch(server_name="0.0.0.0", server_port=7860)
